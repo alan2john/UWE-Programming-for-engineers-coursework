@@ -9,9 +9,14 @@ int main() {
 
     if (myData != NULL) {
         printf("Loaded %d samples from file.\n", sampleCount);
+        double peak1 = find_peak(myData, sampleCount, 1);
+        double peak2 = find_peak(myData, sampleCount, 2);
+        double peak3 = find_peak(myData, sampleCount, 3);
 
-        printf("Row 1 is Time: %.1f, V1: %.1f, V2: %.1f, V3: %.1f\n",
-            myData[0].time, myData[0].v1, myData[0].v2, myData[0].v3);
+        printf("Analysis Report\n");
+        printf("peak1 : %.2f\n", peak1);
+        printf("peak2 : %.2f\n", peak2);
+        printf("peak3 : %.2f\n", peak3);
 
         free(myData);
     } else {

@@ -11,5 +11,7 @@ typedef struct {
 
 
 PowerSample* load_data(const char* filename, int* count);
+double find_peak(PowerSample* data, int count, int phase_num);
+double calculate_rms(double peak_voltage);
 
 #endif //UWE_PROGRAMMING_FOR_ENGINEERS_COURSEWORK_POWER_ANALYSER_H
