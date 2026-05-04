@@ -22,12 +22,15 @@ PowerSample* load_data(const char* filename, int* count) {
         return NULL;
     }
     fseek(file, 0, SEEK_SET);
-    for (int i = 0; i < lines; i++) {
-        int result = fscanf(file, "%lf %lf %lf %lf",
+
+    char dummy_buffer[1024];
+    fgets(dummy_buffer, sizeof(dummy_buffer), file);
+    for (int i = 0; i < lines - 1; i++) {
+        int result = fscanf(file, "%lf,%lf,%lf,%lf,%*lf,%*lf,%*lf,%*lf",
                             &data[i].time, &data[i].v1,
                             &data[i].v2, &data[i].v3);
 
-        //printf("DEBUG: Line %d, read %d items\n", i + 1, result);
+        //printf("bug checker: Line %d, read %d items\n", i + 1, result);
     }
     fclose(file);
     return data;
@@ -42,8 +45,8 @@ PowerSample* load_data(const char* filename, int* count) {
             else if (phase_num == 2) current_v = data[i].v2;
             else current_v = data[i].v3;
 
-            if (current_v > max_v) {
-                max_v = current_v;
+            if (fabs(current_v) > max_v) {
+                max_v = fabs(current_v);
             }
         }
         return max_v;

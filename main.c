@@ -5,7 +5,7 @@
 int main() {
     int sampleCount = 0;
 
-    PowerSample* myData = load_data("C:\\Users\\20ala\\CLionProjects\\UWE-Programming-for-engineers-coursework\\test.txt", &sampleCount);
+    PowerSample* myData = load_data("C:\\Programming for Engineers Coursework\\UWE-Programming-for-engineers-coursework\\power_quality_log.csv", &sampleCount);
 
     if (myData != NULL) {
         printf("Loaded %d samples from file.\n", sampleCount);
