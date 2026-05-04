@@ -9,14 +9,22 @@ int main() {
 
     if (myData != NULL) {
         printf("Loaded %d samples from file.\n", sampleCount);
-        double peak1 = find_peak(myData, sampleCount, 1);
-        double peak2 = find_peak(myData, sampleCount, 2);
-        double peak3 = find_peak(myData, sampleCount, 3);
+        printf("Phase     Peak voltage    RMS voltage\n");
 
-        printf("Analysis Report\n");
-        printf("peak1 : %.2f\n", peak1);
-        printf("peak2 : %.2f\n", peak2);
-        printf("peak3 : %.2f\n", peak3);
+        for (int p = 1; p<= 3; p++) {
+            double peak = find_peak(myData, sampleCount, p);
+            double rms = calculate_rms(peak);
+            printf("\n");
+            printf("  %d      %7.2f V       %7.2f V\n", p, peak, rms);
+
+        }
+        double p1 = find_peak(myData, sampleCount, 1);
+        double r1 = calculate_rms(p1);
+        double p2 = find_peak(myData, sampleCount, 2);
+        double r2 = calculate_rms(p2);
+        double p3 = find_peak(myData, sampleCount, 3);
+        double r3 = find_peak(myData, sampleCount, 3);
+        save_report("C:\\Users\\20ala\\CLionProjects\\UWE-Programming-for-engineers-coursework\\report.txt", sampleCount, p1, r1, p2, r2, p3, r3);
 
         free(myData);
     } else {

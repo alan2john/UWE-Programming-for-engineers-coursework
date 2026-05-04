@@ -23,7 +23,7 @@ PowerSample* load_data(const char* filename, int* count) {
     }
     fseek(file, 0, SEEK_SET);
     for (int i = 0; i < lines; i++) {
-        int result = fscanf(file, "%lf, %lf, %lf, %lf",
+        int result = fscanf(file, "%lf %lf %lf %lf",
                             &data[i].time, &data[i].v1,
                             &data[i].v2, &data[i].v3);
 
@@ -51,4 +51,22 @@ PowerSample* load_data(const char* filename, int* count) {
         }
 double calculate_rms(double peak_voltage) {
     return peak_voltage / sqrt(2.0);
+}
+
+void save_report(const char* filename, int count, double p1, double r1, double p2, double r2, double p3, double r3) {
+    FILE* file = fopen(filename,"w");
+
+    if (file == NULL) {
+        printf("Could not open file for writing.\n");
+        return;
+    }
+    fprintf(file, "Report:\n");
+    fprintf(file, "Phase Peak RMS\n");
+    fprintf(file, "1    %.2fV, %.2fV\n", p1, r1);
+    fprintf(file, "2    %.2fV, %.2fV\n", p2, r2);
+    fprintf(file, "3    %.2fV, %.2fV\n", p3, r3);
+
+    fclose(file);
+    printf("Saved report to %s.\n", filename);
+
 }
