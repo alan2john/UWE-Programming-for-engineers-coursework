@@ -31,9 +31,15 @@ int main() {
         double r2 = calculate_rms(myData, sampleCount, 2);
         double p3 = find_peak(myData, sampleCount, 3);
         double r3 = calculate_rms(myData, sampleCount, 3);
-        save_report("C:\\Users\\20ala\\CLionProjects\\UWE-Programming-for-engineers-coursework\\report.txt", myData, sampleCount);
 
+        //printf("Bug 1");
+        //fflush(stdout);
+        save_report("C:\\Users\\20ala\\CLionProjects\\UWE-Programming-for-engineers-coursework\\report.txt", myData, sampleCount);
+        //printf("Bug 2");
+        //fflush(stdout);
         free(myData);
+        //printf("Bug 3");
+        //fflush(stdout);
     } else {
         printf("ERROR: Could not load data from file.\n");
     }

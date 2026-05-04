@@ -71,11 +71,10 @@ void save_report(const char* filename, PowerSample* data, int count) {
         int clips = detect_clipping(data, count, p);
         int compliant = check_tolerance(rms);
 
-        fprintf(file," %d %.2f V %.2f V %.4f V %4d %s \n");
+        fprintf(file, "  %d    %7.2f V     %7.2f V  %7.4f V   %4d       %s\n",
+                p, rms, p2p, dc, clips, compliant ? "YES" : "NO");
 
     }
 
     fclose(file);
-    printf("Saved report to %s.\n", filename);
-
 }
