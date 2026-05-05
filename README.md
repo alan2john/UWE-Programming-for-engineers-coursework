@@ -16,6 +16,10 @@ Using CLion (CMake)
 4. Click the run (Play) icon. 
 5. The program will output the final analysis to results.txt.
 
+Using gcc, open your terminal in the project directory and run the following command:
+
+gcc main.c waveform.c io.c -o PowerAnalyser -lm
+
 
 To run the compiled executable:
 Windows: .\PowerAnalyser.exe
